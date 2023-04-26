@@ -21,7 +21,7 @@ public class Customer {
 
 	@Column
 	@NotNull
-//	@Pattern(regexp = "[A-Za-z]")
+	@Pattern(regexp = "^[A-Za-z]*$",message="Please enter Valid name.")
 	private String name;
 
 	@Column

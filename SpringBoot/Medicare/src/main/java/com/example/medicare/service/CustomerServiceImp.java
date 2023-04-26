@@ -14,8 +14,8 @@ public class CustomerServiceImp implements CustomerService{
 	private CustomerRepo repo;
 	
 	@Override
-	public void addCustomer(Customer cust) {
-		repo.save(cust);
+	public Customer addCustomer(Customer cust) {
+		return repo.save(cust);
 	}
 	
 	@Override
@@ -23,5 +23,15 @@ public class CustomerServiceImp implements CustomerService{
 		Customer cust;
 		cust = repo.findByName(name);
 		return cust;
+	}
+
+	@Override
+	public Customer getByEmailAndPassword(String email, String password) {
+		return repo.findByEmailAndPassword(email, password);
+	}
+
+	@Override
+	public Customer getByEmail(String name) {
+		return repo.findByEmail(name);
 	}
 }

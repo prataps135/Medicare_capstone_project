@@ -9,4 +9,6 @@ import com.example.medicare.model.Customer;
 @Repository
 public interface CustomerRepo extends CrudRepository<Customer, Integer>{
 	Customer findByName(String name);
+	Customer findByEmailAndPassword(String email, String password);
+	Customer findByEmail(String email);
 }
