@@ -18,7 +18,7 @@ import com.example.medicare.service.CustomerService;
 
 import jakarta.validation.Valid;
 
-@RestController
+@RestController//(value="/customer")
 @Validated
 public class CustomerController {
 	@Autowired
@@ -29,7 +29,7 @@ public class CustomerController {
 //		service.addCustomer(cust);
 //	}
 	
-	@PostMapping(value="/customer")
+	@PostMapping(value="customer/add")
 	public ResponseEntity<Customer> addCustomer(@Valid @RequestBody Customer cust)throws Exception{
 		String tempEmail = cust.getEmail();
 		if(tempEmail != null && !"".equals(tempEmail)) {
@@ -43,7 +43,7 @@ public class CustomerController {
 		return new ResponseEntity<Customer>(cust,HttpStatus.CREATED);
 	}
 	
-	@GetMapping(value = "/customer/name/{name}")
+	@GetMapping(value = "customer/name/{name}")
 	public ResponseEntity<Customer> getByName(@PathVariable String name) throws Exception{
 		Customer cust = service.getCustomerByName(name);
 		if(cust == null) {
@@ -52,7 +52,7 @@ public class CustomerController {
 		return new ResponseEntity<Customer>(cust,HttpStatus.FOUND);
 	}
 	
-	@GetMapping(value = "/customer/email/{email}")
+	@GetMapping(value = "customer/email/{email}")
 	public ResponseEntity<Customer> getByEmail(@PathVariable("email") String email) throws Exception{
 		Customer custTemp = service.getByEmail(email);
 		if(custTemp == null) {
@@ -62,17 +62,17 @@ public class CustomerController {
 	}
 	
 	
-	@PostMapping(value = "/login")
-	public ResponseEntity<Customer> getByEmailAndPassWord(@Valid @RequestBody Customer cust) throws Exception{
-		String email = cust.getEmail();
-		String password = cust.getPassword();
-		Customer custTemp = null;
-		if(email != null && password != null) {
-			custTemp = service.getByEmailAndPassword(email, password);
+	@PostMapping(value = "customer/login")
+	public ResponseEntity<Customer> getByEmailAndPassword(@RequestBody Customer customer) throws Exception {
+		String tempEmail = customer.getEmail();
+		String tempPass = customer.getPassword();
+		Customer customerObj = null;
+		if (tempEmail != null && tempPass != null) {
+			customerObj  = service.getByEmailAndPassword(tempEmail, tempPass);			
 		}
-		if(custTemp == null) {
+		if (customerObj == null) {
 			throw new LoginException();
 		}
-		return new ResponseEntity<Customer>(custTemp,HttpStatus.FOUND);
+		return new ResponseEntity<Customer>(customerObj, HttpStatus.FOUND);
 	}
 }
