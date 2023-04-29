@@ -1,0 +1,5 @@
+package com.example.medicare.model;
+
+public class Admin {
+
+}

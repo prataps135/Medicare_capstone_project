@@ -1,0 +1,31 @@
+package com.example.medicare.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import com.example.medicare.model.Customer;
+import com.example.medicare.service.CustomerService;
+
+@RestController
+@Validated
+public class CustomerController {
+	@Autowired
+	private CustomerService service;
+	
+//	@PostMapping(value="/customer")
+//	public void addCustomer(Customer cust) {
+//		service.addCustomer(cust);
+//	}
+	
+	@PostMapping(value="/customer")
+	public ResponseEntity<Void> addCustomer(@RequestBody Customer cust) {
+		service.addCustomer(cust);
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	
+}

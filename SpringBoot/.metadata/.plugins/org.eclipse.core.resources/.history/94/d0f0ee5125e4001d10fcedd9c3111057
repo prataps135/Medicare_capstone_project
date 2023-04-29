@@ -1,0 +1,5 @@
+package com.example.medicare.exception;
+
+public class ExceptionHandler {
+
+}
