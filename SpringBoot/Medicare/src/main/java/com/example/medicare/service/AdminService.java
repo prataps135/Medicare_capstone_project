@@ -9,4 +9,5 @@ public interface AdminService {
 	Admin addAdmin(Admin admin);
 	Admin getByEmail(String email);
 	Admin getByEmailAndPassword(String email, String password);
+	Admin getByName(String name);
 }

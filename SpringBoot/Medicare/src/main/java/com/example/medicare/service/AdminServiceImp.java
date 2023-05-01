@@ -26,4 +26,9 @@ public class AdminServiceImp implements AdminService{
 		return repo.findByEmailAndPassword(email, password);
 	}
 
+	@Override
+	public Admin getByName(String name) {
+		return repo.findByName(name);
+	}
+
 }

@@ -1,0 +1,27 @@
+package com.example.medicare.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.medicare.model.Admin;
+import com.example.medicare.service.AdminService;
+
+import jakarta.validation.Valid;
+
+@RestController//(value="/admin")
+@Validated
+public class AdminController {
+	@Autowired
+	AdminService service;
+	
+	@PostMapping(value="admin/add")
+	public ResponseEntity<Admin> addAdmin(@Valid @RequestBody Admin admin){
+		Admin tempAdmin = service.addAdmin(admin);
+		return new ResponseEntity<Admin>(tempAdmin,HttpStatus.CREATED);
+	}
+}

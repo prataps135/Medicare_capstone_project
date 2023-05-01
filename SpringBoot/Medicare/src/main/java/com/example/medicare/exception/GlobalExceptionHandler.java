@@ -13,13 +13,23 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler{
 		return new ResponseEntity<Object>("Customer Already There in Database.",HttpStatus.CONFLICT);
 	}
 	
-	@ExceptionHandler(value=CustomerNotFoundExpection.class)
-	public ResponseEntity<Object> exception(CustomerNotFoundExpection ex){
-		return new ResponseEntity<Object>("Customer Not Found in Database.",HttpStatus.CONFLICT);
+	@ExceptionHandler(value=CustomerNotFoundException.class)
+	public ResponseEntity<Object> exception(CustomerNotFoundException ex){
+		return new ResponseEntity<Object>("Not Found in Database.",HttpStatus.CONFLICT);
 	}
 	
 	@ExceptionHandler(value=LoginException.class)
 	public ResponseEntity<Object> exception(LoginException ex){
 		return new ResponseEntity<Object>("Invalid, Please try again.",HttpStatus.CONFLICT);
+	}
+	
+	@ExceptionHandler(value=AdminAlreadyExistsException.class)
+	public ResponseEntity<Object> exception(AdminAlreadyExistsException ex){
+		return new ResponseEntity<Object>("Admin Already There in Database",HttpStatus.CONFLICT);
+	}
+	
+	@ExceptionHandler(value=AdminNotFoundException.class)
+	public ResponseEntity<Object> exception(AdminNotFoundException ex){
+		return new ResponseEntity<Object>("Admin not found in Database",HttpStatus.CONFLICT);
 	}
 }
