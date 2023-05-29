@@ -1,0 +1,113 @@
+<div class="bg-img">
+  <div class="example-container">
+    <div class="form-container">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Add Product</mat-card-title>
+        </mat-card-header>
+        <mat-card-content fxLayout="row">
+          <form [formGroup]="updateProductForm">
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label> Name </mat-label>
+              <input
+                matInput
+                formControlName="pname"
+                placeholder="Enter Product"
+                required
+              />
+              <mat-error
+                *ngIf="updateProductForm.get('pname')?.hasError('required')"
+              >
+                Product Name is required
+              </mat-error>
+              <mat-error
+                *ngIf="updateProductForm.get('pname')?.hasError('maxlength')"
+              >
+                name should not exceed 25 characters
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Product Category</mat-label>
+              <mat-select
+                formControlName="pcat"
+                placeholder="Select an category"
+                required
+              >
+                <mat-option
+                  [value]="product"
+                  *ngFor="let product of categories"
+                  >{{ product }}</mat-option
+                >
+              </mat-select>
+              <mat-error
+                *ngIf="updateProductForm.get('pcat')?.hasError('required')"
+              >
+                Product Category is required
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-fieldarea" appearance="outline">
+              <mat-label>Product Description</mat-label>
+              <textarea
+                matInput
+                rows="5"
+                cols="40"
+                formControlName="pdesc"
+                placeholder="Enter Product Description"
+                required
+              ></textarea>
+              <mat-error
+                *ngIf="updateProductForm.get('pdesc')?.hasError('required')"
+              >
+                Product description is required
+              </mat-error>
+              <mat-error
+                *ngIf="updateProductForm.get('pdesc')?.hasError('minlength')"
+              >
+                min 10 characters required</mat-error
+              >
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Price</mat-label>
+              <input
+                matInput
+                formControlName="price"
+                placeholder="Enter Amount of Product"
+                required
+              />
+              <mat-error
+                *ngIf="updateProductForm.get('price')?.hasError('required')"
+              >
+                Product price cannot be empty
+              </mat-error>
+              <mat-error
+                *ngIf="updateProductForm.get('price')?.hasError('pattern')"
+              >
+                Invalid amount for product
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label>Label ID</mat-label>
+              <input
+                matInput
+                formControlName="labelCode"
+                placeholder="Enter Product Label ID"
+                required
+              />
+              <mat-error
+                *ngIf="updateProductForm.get('labelCode')?.hasError('required')"
+              >
+                This Field is required
+              </mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="button" (click)="updateProduct()">
+              Update
+            </button>
+            <button mat-raised-button class="btn" (click)="cancel()">
+              Cancel
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

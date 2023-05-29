@@ -1,0 +1,49 @@
+<div class="bg-img">
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <div class="header-logo">
+        <img class="branding" src="../../assets/logo.png" alt="header" />
+      </div>
+      <div>
+        <a
+          mat-button
+          [routerLink]="'/home'"
+          [routerLinkActive]="'activebutton'"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          Home
+        </a>
+        <a
+          *ngIf="roleAdmin === 'Admin'"
+          mat-button
+          [routerLink]="'/home/admin-registration'"
+          routerLinkActive="active"
+          [routerLinkActive]="'activebutton'"
+        >
+          Admin Registration
+        </a>
+        <a
+          mat-button
+          [routerLink]="'/home/medicine'"
+          routerLinkActive="active"
+          [routerLinkActive]="'activebutton'"
+        >
+          Medicines
+        </a>
+        <a
+          *ngIf="roleAdmin === 'Admin'"
+          mat-button
+          [routerLink]="'/home/add-medicine'"
+          routerLinkActive="active"
+          [routerLinkActive]="'activebutton'"
+        >
+          Add medicine
+        </a>
+        <button id="logout" (click)="onLogout()">
+          <img src="../../assets/signOut.png" alt="logout" />
+        </button>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</div>

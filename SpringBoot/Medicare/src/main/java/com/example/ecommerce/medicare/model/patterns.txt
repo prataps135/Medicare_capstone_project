@@ -1,0 +1,19 @@
+^                 # start-of-string
+(?=.*[0-9])       # a digit must occur at least once
+(?=.*[a-z])       # a lower case letter must occur at least once
+(?=.*[A-Z])       # an upper case letter must occur at least once
+(?=.*[@#$%^&+=])  # a special character must occur at least once
+(?=\S+$)          # no whitespace allowed in the entire string
+.{8,}             # anything, at least eight places though
+$                 # end-of-string
+
+^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$
+
+The following restrictions are imposed in the email address' local part by using this regex:
+
+It allows numeric values from 0 to 9.
+Both uppercase and lowercase letters from a to z are allowed.
+Allowed are underscore “_”, hyphen “-“, and dot “.”
+Dot isn't allowed at the start and end of the local part.
+Consecutive dots aren't allowed.
+For the local part, a maximum of 64 characters are allowed.

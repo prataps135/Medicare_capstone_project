@@ -1,0 +1,53 @@
+<div class="bg-img">
+  <div class="search-bar">
+    <mat-card id="card">
+      <mat-card-content>
+        <input
+          type="text"
+          placeholder="Search with Name..."
+          [(ngModel)]="query"
+        />
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div
+    class="main-div"
+    *ngFor="let product of products | filterProduct : query : 'pname'"
+  >
+    <mat-card class="tp-card">
+      <mat-card-header class="text">
+        <mat-card-title>{{ product.pname }}</mat-card-title> </mat-card-header
+      ><img
+        mat-card-image
+        class="imgs"
+        src="https://th-i.thgim.com/public/incoming/qldpgl/article65891888.ece/alternates/LANDSCAPE_1200/iStock-479304376.jpg"
+        alt="Photo of Product"
+      />
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          class="button"
+          (click)="viewProduct(product.pid)"
+        >
+          View
+        </button>
+        <button
+          *ngIf="roleAdmin === 'Admin'"
+          mat-raised-button
+          class="btn"
+          (click)="updateProduct(product.pid)"
+        >
+          Update
+        </button>
+        <button
+          *ngIf="roleAdmin === 'Admin'"
+          mat-raised-button
+          class="delete"
+          (click)="deleteProduct(product.pid)"
+        >
+          Delete
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

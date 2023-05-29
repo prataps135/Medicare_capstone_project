@@ -1,0 +1,71 @@
+<div class="bg-img">
+  <div class="main-div">
+    <mat-card class="tp-card">
+      <img
+        mat-card-image
+        class="imgs"
+        src="https://www.phablecare.com/assets/img/order-medicines/ej-ordr-med-banner-img.png"
+        alt="Photo of a Product"
+      />
+      <mat-card-header class="text">
+        <mat-card-title
+          style="
+            font-size: 30px;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 30px;
+          "
+          >{{ currentProduct.pname }}</mat-card-title
+        >
+      </mat-card-header>
+      <mat-card-content>
+        <span style="font-size: 20px; font-weight: bold; color: #ffa07a"
+          >Category: {{ currentProduct.pcat }}</span
+        ><br />
+        <span style="font-size: 20px; font-weight: bold; color: #f08080"
+          >Description:</span
+        ><br />
+        <span
+          class="angular-with-newlines"
+          style="font-size: 14px; color: #9fe2bf"
+          >{{ currentProduct.pdesc }}</span
+        ><br />
+        <span style="font-size: 18px; font-weight: bold; color: #40e0d0"
+          >Price: <span>Rs.</span>{{ currentProduct.price }}</span
+        ><br />
+        <span style="font-size: 18px; font-weight: bold; color: #00ffff"
+          >Label ID: {{ currentProduct.labelCode }}</span
+        ><br /><br />
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          *ngIf="roleAdmin === 'Admin'"
+          mat-raised-button
+          class="button"
+          (click)="updateProduct(currentProduct.pid)"
+        >
+          Update
+        </button>
+        <button
+          *ngIf="roleAdmin === 'Admin'"
+          mat-raised-button
+          class="btn"
+          (click)="deleteProduct(currentProduct.pid)"
+        >
+          Delete
+        </button>
+        <button mat-raised-button class="cncl" (click)="cancel()">
+          Cancel
+        </button>
+        <button
+          *ngIf="roleCustomer === 'Customer'"
+          mat-raised-button
+          class="purchase"
+          (click)="purchase()"
+        >
+          Buy
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
